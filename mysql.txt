@@ -1,0 +1,31 @@
+CREATE DATABASE tracker;
+USE tracker;
+CREATE TABLE client (
+id INT PRIMARY KEY AUTO_INCREMENT,
+name VARCHAR(50),
+birth_place VARCHAR(50),
+birth_date DATE,
+email VARCHAR(50)
+);
+
+CREATE TABLE orders (
+id INT PRIMARY KEY AUTO_INCREMENT,
+client_id INT,
+location VARCHAR(50),
+object VARCHAR(50),
+amount INT,
+FOREIGN KEY (client_id) REFERENCES client(id)
+);
+
+INSERT INTO client (name, birth_place, birth_date, email) VALUES
+('Nagy Andor', 'Győr', '1999-10-10', 'nandor10@gmail.com'),
+('Laczkó Anna', 'Vác', '1978-08-26', 'annalaczko.anna@gmail.com'),
+('Kriston Károly', 'Eger', '1982-11-01', 'kk01kris@gmail.com'),
+('Varga Imre', 'Kalocsa', '1995-03-25', 'v.imre@gmail.com');
+
+INSERT INTO orders (client_id, location, object, amount) VALUES
+(1, 'Grillmánia', 'hamburger',  25000),
+(1, 'Varga Techs','Iphone 20', 670000),
+(2, 'H&M', 'dress', 20000),
+(3, 'Obi', 'fűnyíró', 78000),
+(4, 'Cserépváros', 'indiai füstölők', 5000);
