@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Clients</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+
+<div class="container-fluid text-center">
+    <div><h2>Manage Clients</h2></div>
+    <div class="m-4"> <!--margin használat-->
+        <a class="h3" th:href="@{/clients/new}">Add New Client</a>
+    </div>
+    <table class="table table-bordered table-striped text-center">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Birth Place</th>
+            <th>Birth Date</th>
+            <th>Birth Email</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="currentClient : ${clients}">
+            <td>
+                <a th:href="@{'/clients/' + ${currentClient.id}}">
+                    <p th:text="${currentClient.id}"></p>
+                </a>
+            </td>
+            <td th:text="${currentClient.name}"></td>
+            <td th:text="${currentClient.birthPlace}"></td>
+            <td th:text="${currentClient.birthDate}"></td>
+            <td th:text="${currentClient.email}"></td>
+            <td>
+                <a class="h5 me-3" th:href="@{'/clients/edit/' + ${currentClient.id}}">Edit</a>
+                <a class="h5" th:href="@{'/clients/delete/' + ${currentClient.id}}">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+
+
+    </table>
+
+    <div class="h7 m-4"> Be aware that all orders will be deleted once you delete a client. This action cannot
+        be revoked.
+    </div>
+    <div><a class="h4 m-4 mb-5" th:href="@{/home}">Back Home</a></div>
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+</body>
+</html>

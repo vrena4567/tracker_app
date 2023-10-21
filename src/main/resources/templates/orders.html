@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Orders</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+
+<div class="container-fluid text-center">
+    <div><h2>Manage Orders</h2></div>
+    <div class="m-4"> <!--margin használat-->
+        <a class="h3" th:href="@{/orders/new}">Add New Order</a>
+    </div>
+    <table class="table table-bordered table-striped text-center">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Client's Name</th>
+            <th>Location</th>
+            <th>Object</th>
+            <th>Amount</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="currentOrder : ${orders}">
+            <td th:text="${currentOrder.id}"></td>
+            <td th:text="${currentOrder.clientId.name}"></td>
+            <td th:text="${currentOrder.location}"></td>
+            <td th:text="${currentOrder.object}"></td>
+            <td th:text="${#numbers.formatCurrency(currentOrder.amount)}"></td>
+        </tr>
+        </tbody>
+
+
+    </table>
+    <div class="h7 m-4">* You can only delete orders by deleting clients as well.
+        <a th:href="@{/clients}">Go to Clients Page</a>
+    </div>
+
+    <div><a class="h4 m-4 mb-5" th:href="@{/home}">Back Home</a></div>
+
+    <div>
+        <p class="m-5"></p>
+        <h6 class="h6">The Client who's been shopping the most expensively recently:</h6>
+        <p class="h7" th:text="${maxClient.name}"></p>
+    </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[[${pageTitle}]]</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+
+<div class="container-fluid text-center">
+    <div><h2>[[${pageTitle}]]</h2></div>
+    <div style="max-width: 500px; margin: 30px auto;">
+        <div class="form-group row m-2">
+            <label class="col-sm-4 col-form-label">Name</label>
+            <div class="col-sm-8">
+                <h6 th:text="${client.name}" class="form-control"></h6>
+            </div>
+        </div>
+        <div class="form-group row m-2">
+            <label class="col-sm-4 col-form-label">Birth Place</label>
+            <div class="col-sm-8">
+                <h6 th:text="${client.birthPlace}" class="form-control"></h6>
+            </div>
+        </div>
+        <div class="form-group row m-2">
+            <label class="col-sm-4 col-form-label">Birth Date</label>
+            <div class="col-sm-8">
+                <h6 th:text="${client.birthDate}" class="form-control"></h6>
+            </div>
+        </div>
+        <div class="form-group row m-2">
+            <label class="col-sm-4 col-form-label">Email</label>
+            <div class="col-sm-8">
+                <h6 th:text="${client.email}" class="form-control"></h6>
+            </div>
+        </div>
+    </div>
+    <table class="table table-bordered table-striped text-center">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Order's Location</th>
+            <th>Order's Object</th>
+            <th>Order's Amount</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="current : ${client.getOrders()}">
+            <td th:text="${current.id}"></td>
+            <td th:text="${current.location}"></td>
+            <td th:text="${current.object}"></td>
+            <td th:text="${#numbers.formatCurrency(current.amount)}"></td>
+        </tr>
+        </tbody>
+
+
+    </table>
+    <div><a class="h4 m-4 mb-5" th:href="@{/clients}">Back To The Clients</a></div>
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+</body>
+</html>
